@@ -3,6 +3,7 @@ import { Source_Serif_4, Inter } from "next/font/google"
 import { Providers } from "@/components/providers"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { Analytics } from "@vercel/analytics/react"
 import "./globals.css"
 
 const sourceSerif = Source_Serif_4({
@@ -56,6 +57,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </Providers>
+        <Analytics />
       </body>
     </html>
   )
