@@ -1,65 +1,120 @@
-import Image from "next/image";
+import Link from "next/link"
+import { getPublishedPosts, getTrendingPosts } from "@/lib/actions"
+import { formatDate, readingTime } from "@/lib/utils"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { TrendingUp } from "lucide-react"
 
-export default function Home() {
+export default async function HomePage() {
+  const [allPosts, trending] = await Promise.all([
+    getPublishedPosts(),
+    getTrendingPosts(),
+  ])
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="mx-auto flex max-w-6xl gap-12 px-4 py-10">
+      {/* ── Main Feed ── */}
+      <section className="flex-1">
+        {allPosts.length === 0 ? (
+          <div className="py-20 text-center">
+            <h2 className="mb-2 font-sans text-2xl font-semibold text-neutral-900">
+              No stories yet
+            </h2>
+            <p className="text-neutral-500">
+              Check back soon — great things are coming.
+            </p>
+          </div>
+        ) : (
+          <div className="divide-y divide-neutral-100">
+            {allPosts.map((post) => (
+              <article key={post.id} className="py-8 first:pt-0">
+                <Link href={`/${post.slug}`} className="group block">
+                  <div className="flex gap-6">
+                    <div className="flex-1">
+                      <div className="mb-2 flex items-center gap-2">
+                        <Avatar className="h-5 w-5">
+                          <AvatarImage src={post.author_image ?? ""} />
+                          <AvatarFallback className="text-[10px]">
+                            {post.author_name?.charAt(0)?.toUpperCase() ?? "A"}
+                          </AvatarFallback>
+                        </Avatar>
+                        <span className="text-sm text-neutral-600">
+                          {post.author_name}
+                        </span>
+                      </div>
+                      <h2 className="mb-1 font-sans text-xl font-bold leading-tight text-neutral-900 group-hover:text-neutral-600">
+                        {post.title}
+                      </h2>
+                      <p className="mb-3 line-clamp-2 font-serif text-base leading-relaxed text-neutral-700">
+                        {post.content_text?.slice(0, 200)}
+                      </p>
+                      <div className="flex items-center gap-2 text-sm text-neutral-400">
+                        {post.published_at && (
+                          <span>{formatDate(post.published_at)}</span>
+                        )}
+                        <span>·</span>
+                        <span>{readingTime(post.content_text ?? "")}</span>
+                        {post.views > 0 && (
+                          <>
+                            <span>·</span>
+                            <span>{post.views} views</span>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    {post.banner_image && (
+                      <div className="hidden shrink-0 sm:block">
+                        <img
+                          src={post.banner_image}
+                          alt={post.title}
+                          className="h-28 w-40 rounded object-cover"
+                        />
+                      </div>
+                    )}
+                  </div>
+                </Link>
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* ── Sidebar ── */}
+      <aside className="hidden w-72 shrink-0 lg:block">
+        <div className="sticky top-20">
+          <div className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-neutral-900">
+            <TrendingUp className="h-4 w-4" />
+            Trending
+          </div>
+          <div className="space-y-5">
+            {trending.map((post, index) => (
+              <Link
+                key={post.id}
+                href={`/${post.slug}`}
+                className="group flex gap-3"
+              >
+                <span className="font-sans text-2xl font-bold text-neutral-200">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <p className="text-xs text-neutral-500">
+                    {post.author_name}
+                  </p>
+                  <h3 className="font-sans text-sm font-bold leading-snug text-neutral-900 group-hover:text-neutral-600">
+                    {post.title}
+                  </h3>
+                  <p className="mt-0.5 text-xs text-neutral-400">
+                    {post.published_at && formatDate(post.published_at)}
+                    {post.views > 0 && <> · {post.views} views</>}
+                  </p>
+                </div>
+              </Link>
+            ))}
+            {trending.length === 0 && (
+              <p className="text-sm text-neutral-400">No trending posts yet.</p>
+            )}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </aside>
     </div>
-  );
+  )
 }
