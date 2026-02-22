@@ -64,7 +64,7 @@ export default function EditStoryPage() {
     return (
         <div className="mx-auto max-w-[680px] px-4 py-10">
             {/* Toolbar */}
-            <div className="mb-8 flex items-center justify-between">
+            <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
                 <p className="text-sm text-neutral-500">
                     {contentText.split(/\s+/).filter(Boolean).length} words
                 </p>

@@ -78,12 +78,6 @@ export default async function PostPage({ params }: PageProps) {
                     </h1>
 
                     <div className="flex items-center gap-3">
-                        <Avatar className="h-10 w-10">
-                            <AvatarImage src={post.author_image ?? ""} />
-                            <AvatarFallback className="flex h-full w-full items-center justify-center rounded-full bg-slate-600 text-[15px] font-medium text-white">
-                                D
-                            </AvatarFallback>
-                        </Avatar>
                         <div>
                             <p className="text-sm font-medium text-neutral-900">
                                 DevBlog

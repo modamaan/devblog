@@ -28,6 +28,7 @@ body {
   line-height: 1.8;
   letter-spacing: -0.003em;
   color: #000000;
+  overflow-wrap: break-word;
 }
 
 .prose-article h1,
@@ -61,6 +62,7 @@ body {
 .prose-article a {
   text-decoration: underline;
   text-underline-offset: 3px;
+  word-break: break-word;
 }
 
 .prose-article blockquote {

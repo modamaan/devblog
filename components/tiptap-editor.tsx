@@ -98,9 +98,11 @@ export function TiptapEditor({ content, onChange }: TiptapEditorProps) {
                     const editorEl = view.dom.closest(".relative")
                     const editorRect = editorEl?.getBoundingClientRect() ?? { left: 0, top: 0 }
 
+                    const isMobile = window.innerWidth < 768
+
                     setFloatingPos({
-                        x: -40,
-                        y: coords.top - editorRect.top - 4,
+                        x: isMobile ? 0 : -40,
+                        y: coords.top - editorRect.top - (isMobile ? 44 : 4),
                     })
                     setShowFloating(true)
                 } else {

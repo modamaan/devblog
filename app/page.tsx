@@ -31,12 +31,6 @@ export default async function HomePage() {
                   <div className="flex gap-6">
                     <div className="flex-1">
                       <div className="mb-2 flex items-center gap-2">
-                        <Avatar className="h-5 w-5">
-                          <AvatarImage src={post.author_image ?? ""} className="rounded-full" />
-                          <AvatarFallback className="flex h-full w-full items-center justify-center rounded-full bg-slate-600 text-[10px] font-medium text-white">
-                            D
-                          </AvatarFallback>
-                        </Avatar>
                         <span className="text-sm text-neutral-600">
                           DevBlog
                         </span>
