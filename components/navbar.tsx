@@ -65,7 +65,7 @@ export function Navbar() {
                                                 src={session.user.image ?? ""}
                                                 alt={session.user.name ?? ""}
                                             />
-                                            <AvatarFallback className="text-xs">
+                                            <AvatarFallback className="text-xs flex h-full w-full items-center justify-center rounded-full bg-slate-600 text-[15px] font-medium text-white">
                                                 {session.user.name?.charAt(0)?.toUpperCase() ?? "U"}
                                             </AvatarFallback>
                                         </Avatar>
