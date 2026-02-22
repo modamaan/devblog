@@ -32,13 +32,13 @@ export default async function HomePage() {
                     <div className="flex-1">
                       <div className="mb-2 flex items-center gap-2">
                         <Avatar className="h-5 w-5">
-                          <AvatarImage src={post.author_image ?? ""} />
-                          <AvatarFallback className="text-[10px]">
-                            {post.author_name?.charAt(0)?.toUpperCase() ?? "A"}
+                          <AvatarImage src={post.author_image ?? ""} className="rounded-full" />
+                          <AvatarFallback className="flex h-full w-full items-center justify-center rounded-full bg-slate-600 text-[10px] font-medium text-white">
+                            D
                           </AvatarFallback>
                         </Avatar>
                         <span className="text-sm text-neutral-600">
-                          {post.author_name}
+                          DevBlog
                         </span>
                       </div>
                       <h2 className="mb-1 font-sans text-xl font-bold leading-tight text-neutral-900 group-hover:text-neutral-600">
@@ -62,11 +62,11 @@ export default async function HomePage() {
                       </div>
                     </div>
                     {post.banner_image && (
-                      <div className="hidden shrink-0 sm:block">
+                      <div className="shrink-0 mt-2 sm:mt-0">
                         <img
                           src={post.banner_image}
                           alt={post.title}
-                          className="h-28 w-40 rounded object-cover"
+                          className="h-24 w-24 sm:h-28 sm:w-40 rounded object-cover"
                         />
                       </div>
                     )}
@@ -97,7 +97,7 @@ export default async function HomePage() {
                 </span>
                 <div>
                   <p className="text-xs text-neutral-500">
-                    {post.author_name}
+                    DevBlog
                   </p>
                   <h3 className="font-sans text-sm font-bold leading-snug text-neutral-900 group-hover:text-neutral-600">
                     {post.title}

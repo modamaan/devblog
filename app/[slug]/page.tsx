@@ -80,13 +80,13 @@ export default async function PostPage({ params }: PageProps) {
                     <div className="flex items-center gap-3">
                         <Avatar className="h-10 w-10">
                             <AvatarImage src={post.author_image ?? ""} />
-                            <AvatarFallback>
-                                {post.author_name?.charAt(0)?.toUpperCase() ?? "A"}
+                            <AvatarFallback className="flex h-full w-full items-center justify-center rounded-full bg-slate-600 text-[15px] font-medium text-white">
+                                D
                             </AvatarFallback>
                         </Avatar>
                         <div>
                             <p className="text-sm font-medium text-neutral-900">
-                                {post.author_name}
+                                DevBlog
                             </p>
                             <p className="text-sm text-neutral-500">
                                 {post.published_at && formatDate(post.published_at)} ·{" "}
