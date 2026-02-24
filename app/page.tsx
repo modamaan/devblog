@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"
+
 import Link from "next/link"
 import { getPublishedPosts, getTrendingPosts } from "@/lib/actions"
 import { formatDate, readingTime } from "@/lib/utils"
