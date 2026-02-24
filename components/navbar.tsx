@@ -38,7 +38,7 @@ export function Navbar() {
                     {session?.user ? (
                         <>
                             {(session.user as any).role === "admin" && (
-                                <>
+                                <div className="hidden sm:flex items-center">
                                     <Button
                                         variant="ghost"
                                         size="sm"
@@ -55,12 +55,22 @@ export function Navbar() {
                                         asChild
                                         className="gap-2 text-sm font-normal text-neutral-600 hover:text-neutral-900"
                                     >
+                                        <Link href="/admin/products">
+                                            Products
+                                        </Link>
+                                    </Button>
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        asChild
+                                        className="gap-2 text-sm font-normal text-neutral-600 hover:text-neutral-900"
+                                    >
                                         <Link href="/me/stories/new">
                                             <PenLine className="h-4 w-4" />
                                             Write
                                         </Link>
                                     </Button>
-                                </>
+                                </div>
                             )}
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
@@ -93,10 +103,13 @@ export function Navbar() {
                                     {(session.user as any).role === "admin" && (
                                         <>
                                             <DropdownMenuItem asChild>
-                                                <Link href="/me/stories">My Stories</Link>
+                                                <Link href="/me/stories/new">✍️ Write</Link>
                                             </DropdownMenuItem>
                                             <DropdownMenuItem asChild>
-                                                <Link href="/admin/products">Admin: Products</Link>
+                                                <Link href="/me/stories">📝 Drafts</Link>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem asChild>
+                                                <Link href="/admin/products">🛍️ Products</Link>
                                             </DropdownMenuItem>
                                         </>
                                     )}
