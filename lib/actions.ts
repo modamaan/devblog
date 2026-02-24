@@ -329,3 +329,114 @@ export async function toggleLike(postId: string) {
 
     revalidatePath("/")
 }
+
+// ─── Digital Products ────────────────────────────────────
+
+import { digitalProducts, productOrders } from "@/db/schema"
+import { slugify as _slugify } from "@/lib/utils"
+
+export async function getAllDigitalProducts() {
+    return db
+        .select()
+        .from(digitalProducts)
+        .where(sql`${digitalProducts.is_active} = true`)
+        .orderBy(desc(digitalProducts.created_at))
+}
+
+export async function getDigitalProductBySlug(slug: string) {
+    const result = await db
+        .select()
+        .from(digitalProducts)
+        .where(eq(digitalProducts.slug, slug))
+        .limit(1)
+    return result[0] ?? null
+}
+
+export async function getAllDigitalProductsAdmin() {
+    const session = await auth()
+    if (session?.user?.role !== "admin") throw new Error("Unauthorized")
+    return db.select().from(digitalProducts).orderBy(desc(digitalProducts.created_at))
+}
+
+export async function createDigitalProduct(data: {
+    title: string
+    description_html: string
+    description_text: string
+    banner_image?: string
+    price: number
+    file_url: string
+}) {
+    const session = await auth()
+    if (session?.user?.role !== "admin") throw new Error("Unauthorized")
+
+    const slug = _slugify(data.title) + "-" + Date.now().toString(36)
+    const [product] = await db
+        .insert(digitalProducts)
+        .values({
+            slug,
+            title: data.title,
+            description_html: data.description_html,
+            description_text: data.description_text,
+            banner_image: data.banner_image ?? null,
+            price: data.price,
+            file_url: data.file_url,
+            created_by: session.user.id!,
+        })
+        .returning()
+
+    revalidatePath("/store")
+    return product
+}
+
+export async function updateDigitalProduct(
+    id: string,
+    data: {
+        title?: string
+        description_html?: string
+        description_text?: string
+        banner_image?: string
+        price?: number
+        file_url?: string
+        is_active?: boolean
+    }
+) {
+    const session = await auth()
+    if (session?.user?.role !== "admin") throw new Error("Unauthorized")
+
+    const updates: Record<string, unknown> = { updated_at: new Date() }
+    if (data.title !== undefined) {
+        updates.title = data.title
+        updates.slug = _slugify(data.title) + "-" + Date.now().toString(36)
+    }
+    if (data.description_html !== undefined) updates.description_html = data.description_html
+    if (data.description_text !== undefined) updates.description_text = data.description_text
+    if (data.banner_image !== undefined) updates.banner_image = data.banner_image
+    if (data.price !== undefined) updates.price = data.price
+    if (data.file_url !== undefined) updates.file_url = data.file_url
+    if (data.is_active !== undefined) updates.is_active = data.is_active
+
+    await db.update(digitalProducts).set(updates).where(eq(digitalProducts.id, id))
+    revalidatePath("/store")
+    revalidatePath("/admin/products")
+}
+
+export async function deleteDigitalProduct(id: string) {
+    const session = await auth()
+    if (session?.user?.role !== "admin") throw new Error("Unauthorized")
+
+    await db.delete(productOrders).where(eq(productOrders.product_id, id))
+    await db.delete(digitalProducts).where(eq(digitalProducts.id, id))
+    revalidatePath("/store")
+    revalidatePath("/admin/products")
+}
+
+export async function getProductOrders(productId: string) {
+    const session = await auth()
+    if (session?.user?.role !== "admin") throw new Error("Unauthorized")
+
+    return db
+        .select()
+        .from(productOrders)
+        .where(eq(productOrders.product_id, productId))
+        .orderBy(desc(productOrders.created_at))
+}

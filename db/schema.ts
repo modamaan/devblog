@@ -4,6 +4,7 @@ import {
     text,
     primaryKey,
     integer,
+    boolean,
 } from "drizzle-orm/pg-core"
 import type { AdapterAccountType } from "next-auth/adapters"
 
@@ -114,4 +115,40 @@ export const claps = pgTable("clap", {
     count: integer("count").notNull().default(1),
     created_at: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
     updated_at: timestamp("updated_at", { mode: "date" }).defaultNow().notNull(),
+})
+
+// ─── Digital Products ────────────────────────────────────
+
+export const digitalProducts = pgTable("digital_product", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    slug: text("slug").unique().notNull(),
+    title: text("title").notNull(),
+    description_html: text("description_html").notNull().default(""),
+    description_text: text("description_text").notNull().default(""),
+    banner_image: text("banner_image"),
+    price: integer("price").notNull(), // in paise (₹99 = 9900)
+    file_url: text("file_url").notNull(), // Google Drive or any download link
+    is_active: boolean("is_active").notNull().default(true),
+    created_by: text("created_by")
+        .notNull()
+        .references(() => users.id, { onDelete: "cascade" }),
+    created_at: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+    updated_at: timestamp("updated_at", { mode: "date" }).defaultNow().notNull(),
+})
+
+export const productOrders = pgTable("product_order", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    product_id: text("product_id")
+        .notNull()
+        .references(() => digitalProducts.id, { onDelete: "cascade" }),
+    buyer_email: text("buyer_email").notNull(),
+    buyer_name: text("buyer_name"),
+    razorpay_order_id: text("razorpay_order_id").unique().notNull(),
+    razorpay_payment_id: text("razorpay_payment_id"),
+    status: text("status").notNull().default("pending"), // "pending" | "paid"
+    created_at: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
 })

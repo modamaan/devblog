@@ -19,12 +19,20 @@ export function Navbar() {
     return (
         <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/80 backdrop-blur-sm">
             <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
-                <Link
-                    href="/"
-                    className="font-sans text-xl font-bold tracking-tight text-neutral-900"
-                >
-                    DevBlog
-                </Link>
+                <div className="flex items-center gap-6">
+                    <Link
+                        href="/"
+                        className="font-sans text-xl font-bold tracking-tight text-neutral-900"
+                    >
+                        DevBlog
+                    </Link>
+                    <Link
+                        href="/store"
+                        className="text-sm font-medium text-neutral-600 hover:text-neutral-900"
+                    >
+                        Store
+                    </Link>
+                </div>
 
                 <div className="flex items-center gap-3">
                     {session?.user ? (
@@ -83,9 +91,14 @@ export function Navbar() {
                                         <Link href="/">Feed</Link>
                                     </DropdownMenuItem>
                                     {(session.user as any).role === "admin" && (
-                                        <DropdownMenuItem asChild>
-                                            <Link href="/me/stories">My Stories</Link>
-                                        </DropdownMenuItem>
+                                        <>
+                                            <DropdownMenuItem asChild>
+                                                <Link href="/me/stories">My Stories</Link>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem asChild>
+                                                <Link href="/admin/products">Admin: Products</Link>
+                                            </DropdownMenuItem>
+                                        </>
                                     )}
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem onClick={() => signOut()}>
