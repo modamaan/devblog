@@ -147,8 +147,8 @@ export const productOrders = pgTable("product_order", {
         .references(() => digitalProducts.id, { onDelete: "cascade" }),
     buyer_email: text("buyer_email").notNull(),
     buyer_name: text("buyer_name"),
-    razorpay_order_id: text("razorpay_order_id").unique().notNull(),
-    razorpay_payment_id: text("razorpay_payment_id"),
+    cf_order_id: text("cf_order_id").unique().notNull(),
+    cf_payment_id: text("cf_payment_id"),
     status: text("status").notNull().default("pending"), // "pending" | "paid"
     created_at: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
 })

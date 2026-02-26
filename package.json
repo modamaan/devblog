@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.11.1",
+    "@cashfreepayments/cashfree-js": "^1.0.6",
     "@clerk/nextjs": "^6.38.1",
     "@neondatabase/serverless": "^1.0.2",
     "@tiptap/extension-bubble-menu": "^3.20.0",
@@ -29,7 +30,6 @@
     "next": "16.1.6",
     "next-auth": "^5.0.0-beta.30",
     "radix-ui": "^1.4.3",
-    "razorpay": "^2.9.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "resend": "^6.9.2",

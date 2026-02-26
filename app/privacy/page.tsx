@@ -21,7 +21,7 @@ export default function PrivacyPage() {
                     <p className="mb-4">We may collect the following types of information:</p>
                     <ul className="list-disc pl-6 mb-4 space-y-2">
                         <li><strong>Contact information</strong> — such as your name and email address, when you use our contact form or make a purchase.</li>
-                        <li><strong>Payment information</strong> — processed securely by Razorpay. We do not store your card details on our servers.</li>
+                        <li><strong>Payment information</strong> — processed securely by Cashfree. We do not store your card details on our servers.</li>
                         <li><strong>Usage data</strong> — browser type, pages visited, and referring URLs, collected via cookies or analytics tools to understand how visitors use the site.</li>
                     </ul>
                     <p>We do not allow visitors to create accounts or publish content on DevBlog. Only DevBlog publishes articles and resources.</p>
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
                     <h2 className="mt-8 mb-4 text-2xl font-semibold text-neutral-900">Third-Party Services</h2>
                     <p className="mb-4">We use the following third-party services which may collect data independently:</p>
                     <ul className="list-disc pl-6 mb-4 space-y-2">
-                        <li><strong>Razorpay</strong> — for payment processing.</li>
+                        <li><strong>Cashfree</strong> — for payment processing.</li>
                         <li><strong>Resend</strong> — for sending purchase confirmation and download emails.</li>
                         <li><strong>Google AdSense / Analytics</strong> — for advertising and anonymous usage analytics.</li>
                     </ul>
