@@ -107,7 +107,7 @@ export function ProductCheckout({ productId, productTitle, price }: ProductCheck
                 <div className="mb-3">
                     <input
                         type="text"
-                        placeholder="Your name (optional)"
+                        placeholder="Your name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="w-full rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm text-neutral-900 outline-none placeholder:text-neutral-400 focus:border-neutral-400 focus:bg-white"
@@ -123,6 +123,7 @@ export function ProductCheckout({ productId, productTitle, price }: ProductCheck
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm text-neutral-900 outline-none placeholder:text-neutral-400 focus:border-neutral-400 focus:bg-white"
                     />
+                    <p className="mt-1.5 text-xs text-neutral-400">Make sure the email is correct — your download link will be sent here.</p>
                 </div>
 
                 {error && <p className="mb-3 text-xs text-red-500">{error}</p>}
