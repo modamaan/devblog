@@ -407,7 +407,8 @@ export async function updateDigitalProduct(
     const updates: Record<string, unknown> = { updated_at: new Date() }
     if (data.title !== undefined) {
         updates.title = data.title
-        updates.slug = _slugify(data.title) + "-" + Date.now().toString(36)
+        // Slug is intentionally NOT updated here — it was set once at creation
+        // and must remain stable so that shared/linked URLs continue to work.
     }
     if (data.description_html !== undefined) updates.description_html = data.description_html
     if (data.description_text !== undefined) updates.description_text = data.description_text
