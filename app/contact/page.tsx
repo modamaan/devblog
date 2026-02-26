@@ -10,8 +10,8 @@ export default function ContactPage() {
                     You can reach us directly at:
                 </p>
                 <p className="font-medium text-neutral-900">
-                    <a href="mailto:contact@devblog.example.com" className="hover:underline">
-                        contact@devblog.example.com
+                    <a href="mailto:amaanprogramming@gmail.com" className="hover:underline">
+                        amaanprogramming@gmail.com
                     </a>
                 </p>
             </div>

@@ -1,3 +1,11 @@
+import { Metadata } from "next"
+import Link from "next/link"
+
+export const metadata: Metadata = {
+    title: "Terms & Conditions – DevBlog",
+    description: "Read the Terms and Conditions for using DevBlog.",
+}
+
 export default function TermsPage() {
     return (
         <div className="mx-auto max-w-3xl px-4 py-16">
@@ -59,13 +67,35 @@ export default function TermsPage() {
                 </section>
 
                 <section>
-                    <h2 className="mb-3 text-xl font-bold text-neutral-900">4. No Professional Advice</h2>
+                    <h2 className="mb-3 text-xl font-bold text-neutral-900">4. Digital Products &amp; Purchases</h2>
+                    <p className="mb-4">
+                        DevBlog offers digital products (such as downloadable files and resources) for purchase through our store.
+                        All purchases are made directly from DevBlog — there are no third-party sellers on this platform.
+                    </p>
+                    <p className="mb-4">
+                        By making a purchase, you agree that:
+                    </p>
+                    <ul className="list-disc pl-6 mb-4 space-y-1">
+                        <li>You are purchasing a licence to use the digital product for personal or commercial use as described on the product page.</li>
+                        <li>You will not redistribute, resell, or share the product files with others.</li>
+                        <li>Delivery is made electronically; physical shipment is not applicable.</li>
+                    </ul>
+                    <p>
+                        Refunds are handled in accordance with our{" "}
+                        <Link href="/refund" className="underline underline-offset-2 text-neutral-900 hover:text-neutral-600 transition-colors">
+                            Refund Policy
+                        </Link>.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 className="mb-3 text-xl font-bold text-neutral-900">5. No Professional Advice</h2>
                     <p className="mb-4">The content published on DevBlog, including finance or technical topics, is for informational purposes only.</p>
                     <p>It should not be considered professional, financial, legal, medical, or investment advice. Readers are encouraged to consult qualified professionals before making decisions based on the information provided.</p>
                 </section>
 
                 <section>
-                    <h2 className="mb-3 text-xl font-bold text-neutral-900">5. External Links</h2>
+                    <h2 className="mb-3 text-xl font-bold text-neutral-900">6. External Links</h2>
                     <p className="mb-4">DevBlog may include links to external websites for reference or additional information.</p>
                     <p className="mb-2">We are not responsible for:</p>
                     <ul className="list-disc pl-6 mb-4 space-y-1">
@@ -77,13 +107,13 @@ export default function TermsPage() {
                 </section>
 
                 <section>
-                    <h2 className="mb-3 text-xl font-bold text-neutral-900">6. Cookies and Advertising</h2>
+                    <h2 className="mb-3 text-xl font-bold text-neutral-900">7. Cookies and Advertising</h2>
                     <p className="mb-4">DevBlog may use cookies to improve user experience.</p>
                     <p>We may also display advertisements or affiliate links to support operational costs. Third-party advertising partners may use cookies in accordance with their own privacy policies.</p>
                 </section>
 
                 <section>
-                    <h2 className="mb-3 text-xl font-bold text-neutral-900">7. Limitation of Liability</h2>
+                    <h2 className="mb-3 text-xl font-bold text-neutral-900">8. Limitation of Liability</h2>
                     <p className="mb-2">While we strive to ensure accuracy, we do not guarantee that:</p>
                     <ul className="list-disc pl-6 mb-4 space-y-1">
                         <li>All information is complete or up-to-date</li>
@@ -94,22 +124,22 @@ export default function TermsPage() {
                 </section>
 
                 <section>
-                    <h2 className="mb-3 text-xl font-bold text-neutral-900">8. Changes to Terms</h2>
+                    <h2 className="mb-3 text-xl font-bold text-neutral-900">9. Changes to Terms</h2>
                     <p className="mb-4">We reserve the right to modify these Terms and Conditions at any time. Updates will be reflected on this page with a revised date.</p>
                     <p>Continued use of the website after changes constitutes acceptance of the updated terms.</p>
                 </section>
 
                 <section>
-                    <h2 className="mb-3 text-xl font-bold text-neutral-900">9. Governing Law</h2>
+                    <h2 className="mb-3 text-xl font-bold text-neutral-900">10. Governing Law</h2>
                     <p>These Terms shall be governed in accordance with the applicable laws of your jurisdiction.</p>
                 </section>
 
                 <section>
-                    <h2 className="mb-3 text-xl font-bold text-neutral-900">10. Contact Information</h2>
+                    <h2 className="mb-3 text-xl font-bold text-neutral-900">11. Contact Information</h2>
                     <p className="mb-4">If you have any questions regarding these Terms and Conditions, you may contact us at:</p>
                     <p>
-                        <a href="mailto:quorlonline@gmail.com" className="font-semibold text-neutral-900 hover:text-blue-600 transition-colors">
-                            📧 quorlonline@gmail.com
+                        <a href="mailto:amaanprogramming@gmail.com" className="font-semibold text-neutral-900 hover:text-blue-600 transition-colors">
+                            📧 amaanprogramming@gmail.com
                         </a>
                     </p>
                 </section>
