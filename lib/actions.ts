@@ -139,7 +139,8 @@ export async function updatePost(
     const updates: Record<string, any> = { updated_at: new Date() }
     if (data.title !== undefined) {
         updates.title = data.title
-        updates.slug = slugify(data.title) + "-" + Date.now().toString(36)
+        // Slug is intentionally NOT updated here — it was set once at creation
+        // and must remain stable so that shared/linked URLs continue to work.
     }
     if (data.content_html !== undefined) updates.content_html = data.content_html
     if (data.content_text !== undefined) updates.content_text = data.content_text
