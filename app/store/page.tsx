@@ -2,7 +2,14 @@ import Link from "next/link"
 import { getAllDigitalProducts } from "@/lib/actions"
 import { ShoppingBag } from "lucide-react"
 
+import { Metadata } from "next"
+
 export const dynamic = "force-dynamic"
+
+export const metadata: Metadata = {
+    title: "Store",
+    description: "Browse and purchase digital products, guides, and resources.",
+}
 
 export default async function StorePage() {
     const products = await getAllDigitalProducts()

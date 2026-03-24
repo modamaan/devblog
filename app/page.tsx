@@ -14,6 +14,7 @@ export default async function HomePage() {
 
   return (
     <div className="mx-auto flex max-w-6xl gap-12 px-4 py-10">
+      <h1 className="sr-only">DevBlog — Where Ideas Come Alive</h1>
       {/* ── Main Feed ── */}
       <section className="flex-1">
         {allPosts.length === 0 ? (
@@ -77,10 +78,10 @@ export default async function HomePage() {
       {/* ── Sidebar ── */}
       <aside className="hidden w-72 shrink-0 lg:block">
         <div className="sticky top-20">
-          <div className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-neutral-900">
+          <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-neutral-900">
             <TrendingUp className="h-4 w-4" />
             Trending
-          </div>
+          </h2>
           <div className="space-y-5">
             {trending.map((post, index) => (
               <Link
@@ -95,9 +96,9 @@ export default async function HomePage() {
                   <p className="text-xs text-neutral-500">
                     DevBlog
                   </p>
-                  <h3 className="font-sans text-sm font-bold leading-snug text-neutral-900 group-hover:text-neutral-600">
+                  <p className="font-sans text-sm font-bold leading-snug text-neutral-900 group-hover:text-neutral-600">
                     {post.title}
-                  </h3>
+                  </p>
                   <p className="mt-0.5 text-xs text-neutral-400">
                     {post.published_at && formatDate(post.published_at)}
                     {post.views > 0 && <> · {post.views} views</>}

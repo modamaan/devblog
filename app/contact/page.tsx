@@ -1,3 +1,10 @@
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "Contact Us",
+    description: "Get in touch, ask questions, or provide feedback to the DevBlog team.",
+}
+
 export default function ContactPage() {
     return (
         <div className="mx-auto max-w-3xl px-4 py-16">

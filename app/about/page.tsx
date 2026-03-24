@@ -1,3 +1,10 @@
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "About",
+    description: "Learn more about DevBlog, our mission, and what we write about.",
+}
+
 export default function AboutPage() {
     return (
         <div className="mx-auto max-w-3xl px-4 py-16">
