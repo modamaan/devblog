@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { CheckCircle, Loader2 } from "lucide-react"
-import { load } from "@cashfreepayments/cashfree-js"
 
 interface ProductCheckoutProps {
     productId: string
@@ -40,7 +39,8 @@ export function ProductCheckout({ productId, productTitle, price }: ProductCheck
 
             const { paymentSessionId, orderId } = data
 
-            // 2. Load Cashfree JS SDK and open checkout
+            // 2. Load Cashfree JS SDK dynamically (only when needed)
+            const { load } = await import("@cashfreepayments/cashfree-js")
             const cashfree = await load({
                 mode: (process.env.NEXT_PUBLIC_CASHFREE_ENV as "sandbox" | "production") ?? "sandbox",
             })
