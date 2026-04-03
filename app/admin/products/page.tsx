@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { getAllDigitalProductsAdmin, deleteDigitalProduct } from "@/lib/actions"
 import { auth } from "@/lib/auth"
 import { redirect } from "next/navigation"
@@ -40,10 +41,13 @@ export default async function AdminProductsPage() {
                     {products.map((product) => (
                         <div key={product.id} className="flex items-center gap-4 p-4">
                             {product.banner_image ? (
-                                <img
+                                <Image
                                     src={product.banner_image}
                                     alt={product.title}
+                                    width={80}
+                                    height={56}
                                     className="h-14 w-20 rounded-lg object-cover"
+                                    loading="lazy"
                                 />
                             ) : (
                                 <div className="flex h-14 w-20 items-center justify-center rounded-lg bg-neutral-100">

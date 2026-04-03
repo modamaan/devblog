@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
+import Image from "next/image"
 import { getPostBySlug, getLikeCount, hasUserLiked, incrementPostViews } from "@/lib/actions"
 import { BlogPostingJsonLd } from "@/components/json-ld"
 import { ClapButton } from "@/components/clap-button"
@@ -94,10 +95,13 @@ export default async function PostPage({ params }: PageProps) {
                 {/* Banner */}
                 {post.banner_image && (
                     <div className="mb-8">
-                        <img
+                        <Image
                             src={post.banner_image}
                             alt={post.title}
+                            width={680}
+                            height={400}
                             className="w-full rounded-lg object-cover"
+                            priority
                         />
                     </div>
                 )}

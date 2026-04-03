@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
+import Image from "next/image"
 import { getDigitalProductBySlug } from "@/lib/actions"
 import { ProductCheckout } from "@/components/product-checkout"
 
@@ -31,11 +32,14 @@ export default async function ProductPage({ params }: PageProps) {
                     {/* Banner */}
                     {product.banner_image && (
                         <div className="mb-8 overflow-hidden rounded-xl">
-                            <img
+                            <Image
                                 src={product.banner_image}
                                 alt={product.title}
+                                width={800}
+                                height={420}
                                 className="w-full object-cover"
                                 style={{ maxHeight: "420px" }}
+                                priority
                             />
                         </div>
                     )}

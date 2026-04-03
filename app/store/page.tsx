@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { getAllDigitalProducts } from "@/lib/actions"
 import { ShoppingBag } from "lucide-react"
 
@@ -34,10 +35,13 @@ export default async function StorePage() {
                             className="group flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-md"
                         >
                             {product.banner_image ? (
-                                <img
+                                <Image
                                     src={product.banner_image}
                                     alt={product.title}
+                                    width={400}
+                                    height={176}
                                     className="h-44 w-full object-cover"
+                                    loading="lazy"
                                 />
                             ) : (
                                 <div className="flex h-44 items-center justify-center bg-neutral-100">

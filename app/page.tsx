@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic"
 
 import Link from "next/link"
+import Image from "next/image"
 import { getPublishedPosts, getTrendingPosts } from "@/lib/actions"
 import { formatDate, readingTime } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -16,12 +17,13 @@ export default async function HomePage() {
     <div className="mx-auto flex max-w-6xl gap-12 px-4 py-10">
       <h1 className="sr-only">DevBlog — Where Ideas Come Alive</h1>
       {/* ── Main Feed ── */}
-      <section className="flex-1">
+      <section className="flex-1" aria-labelledby="latest-stories-heading">
+        <h2 id="latest-stories-heading" className="sr-only">Latest Stories</h2>
         {allPosts.length === 0 ? (
           <div className="py-20 text-center">
-            <h2 className="mb-2 font-sans text-2xl font-semibold text-neutral-900">
+            <p className="mb-2 font-sans text-2xl font-semibold text-neutral-900">
               No stories yet
-            </h2>
+            </p>
             <p className="text-neutral-500">
               Check back soon — great things are coming.
             </p>
@@ -38,9 +40,9 @@ export default async function HomePage() {
                           DevBlog
                         </span>
                       </div>
-                      <h2 className="mb-1 font-sans text-xl font-bold leading-tight text-neutral-900 group-hover:text-neutral-600">
+                      <h3 className="mb-1 font-sans text-xl font-bold leading-tight text-neutral-900 group-hover:text-neutral-600">
                         {post.title}
-                      </h2>
+                      </h3>
                       <p className="mb-3 line-clamp-2 font-serif text-base leading-relaxed text-neutral-700">
                         {post.content_text?.slice(0, 200)}
                       </p>
@@ -60,10 +62,13 @@ export default async function HomePage() {
                     </div>
                     {post.banner_image && (
                       <div className="shrink-0 mt-2 sm:mt-0">
-                        <img
+                        <Image
                           src={post.banner_image}
                           alt={post.title}
+                          width={160}
+                          height={112}
                           className="h-24 w-24 sm:h-28 sm:w-40 rounded object-cover"
+                          loading="lazy"
                         />
                       </div>
                     )}
@@ -80,7 +85,7 @@ export default async function HomePage() {
         <div className="sticky top-20">
           <h2 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-neutral-900">
             <TrendingUp className="h-4 w-4" />
-            Trending
+            Trending Stories
           </h2>
           <div className="space-y-5">
             {trending.map((post, index) => (
@@ -96,9 +101,9 @@ export default async function HomePage() {
                   <p className="text-xs text-neutral-500">
                     DevBlog
                   </p>
-                  <p className="font-sans text-sm font-bold leading-snug text-neutral-900 group-hover:text-neutral-600">
+                  <h3 className="font-sans text-sm font-bold leading-snug text-neutral-900 group-hover:text-neutral-600">
                     {post.title}
-                  </p>
+                  </h3>
                   <p className="mt-0.5 text-xs text-neutral-400">
                     {post.published_at && formatDate(post.published_at)}
                     {post.views > 0 && <> · {post.views} views</>}
