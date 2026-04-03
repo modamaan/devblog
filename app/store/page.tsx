@@ -23,7 +23,7 @@ export default async function StorePage() {
             </div>
 
             {products.length === 0 ? (
-                <div className="py-24 text-center text-neutral-400">
+                <div className="py-24 text-center text-neutral-500">
                     <p className="text-lg">No products available yet.</p>
                 </div>
             ) : (

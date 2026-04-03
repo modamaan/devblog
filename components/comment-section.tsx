@@ -115,7 +115,7 @@ export function CommentSection({ postId, postAuthorId }: CommentSectionProps) {
                                     Author
                                 </span>
                             )}
-                            <span className="text-xs text-neutral-400">
+                            <span className="text-xs text-neutral-500">
                                 {formatDate(comment.created_at)}
                             </span>
                         </div>

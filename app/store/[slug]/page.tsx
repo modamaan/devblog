@@ -50,7 +50,7 @@ export default async function ProductPage({ params }: PageProps) {
                     </h1>
 
                     {/* About section label */}
-                    <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-neutral-400">
+                    <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-neutral-500">
                         About the Product
                     </p>
 

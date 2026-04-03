@@ -46,15 +46,15 @@ export default async function HomePage() {
                       <p className="mb-3 line-clamp-2 font-serif text-base leading-relaxed text-neutral-700">
                         {post.content_text?.slice(0, 200)}
                       </p>
-                      <div className="flex items-center gap-2 text-sm text-neutral-400">
+                      <div className="flex items-center gap-2 text-sm text-neutral-500">
                         {post.published_at && (
                           <span>{formatDate(post.published_at)}</span>
                         )}
-                        <span>·</span>
+                        <span aria-hidden="true">·</span>
                         <span>{readingTime(post.content_text ?? "")}</span>
                         {post.views > 0 && (
                           <>
-                            <span>·</span>
+                            <span aria-hidden="true">·</span>
                             <span>{post.views} views</span>
                           </>
                         )}
@@ -105,7 +105,7 @@ export default async function HomePage() {
                   <h3 className="font-sans text-sm font-bold leading-snug text-neutral-900 group-hover:text-neutral-600">
                     {post.title}
                   </h3>
-                  <p className="mt-0.5 text-xs text-neutral-400">
+                  <p className="mt-0.5 text-xs text-neutral-500">
                     {post.published_at && formatDate(post.published_at)}
                     {post.views > 0 && <> · {post.views} views</>}
                   </p>
@@ -113,7 +113,7 @@ export default async function HomePage() {
               </Link>
             ))}
             {trending.length === 0 && (
-              <p className="text-sm text-neutral-400">No trending posts yet.</p>
+              <p className="text-sm text-neutral-500">No trending posts yet.</p>
             )}
           </div>
         </div>
