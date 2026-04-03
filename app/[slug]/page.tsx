@@ -1,3 +1,5 @@
+export const revalidate = 600 // ISR: rebuild every 10 minutes
+
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import Image from "next/image"
