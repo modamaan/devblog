@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic"
+export const revalidate = 60 // ISR: rebuild page every 60 seconds in the background
 
 import Link from "next/link"
 import Image from "next/image"
@@ -68,6 +68,7 @@ export default async function HomePage() {
                           width={160}
                           height={112}
                           className="h-24 w-24 sm:h-28 sm:w-40 rounded object-cover"
+                          sizes="(max-width: 640px) 96px, 160px"
                           loading="lazy"
                         />
                       </div>
