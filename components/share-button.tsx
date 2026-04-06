@@ -19,7 +19,7 @@ interface ShareButtonProps {
 export function ShareButton({ url, title }: ShareButtonProps) {
     const [copied, setCopied] = useState(false)
 
-    const fullUrl = typeof window !== "undefined" ? window.location.href : url
+    const fullUrl = url
 
     const handleCopy = () => {
         navigator.clipboard.writeText(fullUrl)

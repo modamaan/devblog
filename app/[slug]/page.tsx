@@ -24,6 +24,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000"
     const description = post.content_text?.slice(0, 160) ?? ""
 
+    const imageUrl = post.banner_image
+        ? post.banner_image.startsWith("http")
+            ? post.banner_image
+            : `${baseUrl.replace(/\/$/, "")}/${post.banner_image.replace(/^\//, "")}`
+        : null
+
     return {
         title: post.title,
         description,
@@ -34,14 +40,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             publishedTime: post.published_at?.toISOString(),
             modifiedTime: post.updated_at?.toISOString(),
             authors: [post.author_name ?? ""],
-            ...(post.banner_image && { images: [post.banner_image] }),
+            ...(imageUrl && { images: [imageUrl] }),
             url: `${baseUrl}/${post.slug}`,
         },
         twitter: {
             card: "summary_large_image",
             title: post.title,
             description,
-            ...(post.banner_image && { images: [post.banner_image] }),
+            ...(imageUrl && { images: [imageUrl] }),
         },
         alternates: {
             canonical: `${baseUrl}/${post.slug}`,
