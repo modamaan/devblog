@@ -1,11 +1,18 @@
 export const revalidate = 60 // ISR: rebuild page every 60 seconds in the background
 
+import { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 import { getPublishedPosts, getTrendingPosts } from "@/lib/actions"
 import { formatDate, readingTime } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { TrendingUp } from "lucide-react"
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+}
 
 export default async function HomePage() {
   const [allPosts, trending] = await Promise.all([
