@@ -37,7 +37,7 @@ export default async function HomePage() {
           </div>
         ) : (
           <div className="divide-y divide-neutral-100">
-            {allPosts.map((post) => (
+            {allPosts.map((post, index) => (
               <article key={post.id} className="py-8 first:pt-0">
                 <Link href={`/${post.slug}`} className="group block">
                   <div className="flex gap-6">
@@ -76,7 +76,7 @@ export default async function HomePage() {
                           height={112}
                           className="h-24 w-24 sm:h-28 sm:w-40 rounded object-cover"
                           sizes="(max-width: 640px) 96px, 160px"
-                          loading="lazy"
+                          priority={index <= 2}
                         />
                       </div>
                     )}
