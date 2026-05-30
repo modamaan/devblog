@@ -1,5 +1,6 @@
 export const revalidate = 60 // ISR: rebuild page every 60 seconds in the background
 
+import React from "react"
 import { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
@@ -7,6 +8,7 @@ import { getPublishedPosts, getTrendingPosts } from "@/lib/actions"
 import { formatDate, readingTime } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { TrendingUp } from "lucide-react"
+import { AdUnit } from "@/components/ad-unit"
 
 export const metadata: Metadata = {
   alternates: {
@@ -38,51 +40,61 @@ export default async function HomePage() {
         ) : (
           <div className="divide-y divide-neutral-100">
             {allPosts.map((post, index) => (
-              <article key={post.id} className="py-8 first:pt-0">
-                <Link href={`/${post.slug}`} className="group block">
-                  <div className="flex gap-6">
-                    <div className="flex-1">
-                      <div className="mb-2 flex items-center gap-2">
-                        <span className="text-sm text-neutral-600">
-                          DevBlog
-                        </span>
+              <React.Fragment key={post.id}>
+                <article className="py-8 first:pt-0">
+                  <Link href={`/${post.slug}`} className="group block">
+                    <div className="flex gap-6">
+                      <div className="flex-1">
+                        <div className="mb-2 flex items-center gap-2">
+                          <span className="text-sm text-neutral-600">
+                            DevBlog
+                          </span>
+                        </div>
+                        <h3 className="mb-1 font-sans text-xl font-bold leading-tight text-neutral-900 group-hover:text-neutral-600">
+                          {post.title}
+                        </h3>
+                        <p className="mb-3 line-clamp-2 font-serif text-base leading-relaxed text-neutral-700">
+                          {post.content_text?.slice(0, 200)}
+                        </p>
+                        <div className="flex items-center gap-2 text-sm text-neutral-500">
+                          {post.published_at && (
+                            <span>{formatDate(post.published_at)}</span>
+                          )}
+                          <span aria-hidden="true">·</span>
+                          <span>{readingTime(post.content_text ?? "")}</span>
+                          {post.views > 0 && (
+                            <>
+                              <span aria-hidden="true">·</span>
+                              <span>{post.views} views</span>
+                            </>
+                          )}
+                        </div>
                       </div>
-                      <h3 className="mb-1 font-sans text-xl font-bold leading-tight text-neutral-900 group-hover:text-neutral-600">
-                        {post.title}
-                      </h3>
-                      <p className="mb-3 line-clamp-2 font-serif text-base leading-relaxed text-neutral-700">
-                        {post.content_text?.slice(0, 200)}
-                      </p>
-                      <div className="flex items-center gap-2 text-sm text-neutral-500">
-                        {post.published_at && (
-                          <span>{formatDate(post.published_at)}</span>
-                        )}
-                        <span aria-hidden="true">·</span>
-                        <span>{readingTime(post.content_text ?? "")}</span>
-                        {post.views > 0 && (
-                          <>
-                            <span aria-hidden="true">·</span>
-                            <span>{post.views} views</span>
-                          </>
-                        )}
-                      </div>
+                      {post.banner_image && (
+                        <div className="shrink-0 mt-2 sm:mt-0">
+                          <Image
+                            src={post.banner_image}
+                            alt={post.title}
+                            width={160}
+                            height={112}
+                            className="h-24 w-24 sm:h-28 sm:w-40 rounded object-cover"
+                            sizes="(max-width: 640px) 96px, 160px"
+                            priority={index <= 2}
+                          />
+                        </div>
+                      )}
                     </div>
-                    {post.banner_image && (
-                      <div className="shrink-0 mt-2 sm:mt-0">
-                        <Image
-                          src={post.banner_image}
-                          alt={post.title}
-                          width={160}
-                          height={112}
-                          className="h-24 w-24 sm:h-28 sm:w-40 rounded object-cover"
-                          sizes="(max-width: 640px) 96px, 160px"
-                          priority={index <= 2}
-                        />
-                      </div>
-                    )}
-                  </div>
-                </Link>
-              </article>
+                  </Link>
+                </article>
+                {/* Ad after every 3rd post */}
+                {(index + 1) % 3 === 0 && (
+                  <AdUnit
+                    slot="YOUR_FEED_AD_SLOT_ID"
+                    format="horizontal"
+                    className="my-4"
+                  />
+                )}
+              </React.Fragment>
             ))}
           </div>
         )}
@@ -123,6 +135,13 @@ export default async function HomePage() {
               <p className="text-sm text-neutral-500">No trending posts yet.</p>
             )}
           </div>
+          {/* Sidebar ad below trending stories */}
+          <AdUnit
+            slot="YOUR_SIDEBAR_AD_SLOT_ID"
+            format="rectangle"
+            className="mt-6"
+            fullWidth={false}
+          />
         </div>
       </aside>
     </div>
