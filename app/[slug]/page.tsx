@@ -125,7 +125,7 @@ export default async function PostPage({ params }: PageProps) {
 
                 {/* In-article ad — shown between post body and interactions */}
                 <AdUnit
-                  slot="YOUR_ARTICLE_AD_SLOT_ID"
+                  slot="1794677408"
                   format="horizontal"
                   className="mb-8"
                 />

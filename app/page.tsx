@@ -89,7 +89,7 @@ export default async function HomePage() {
                 {/* Ad after every 3rd post */}
                 {(index + 1) % 3 === 0 && (
                   <AdUnit
-                    slot="YOUR_FEED_AD_SLOT_ID"
+                    slot="8828504980"
                     format="horizontal"
                     className="my-4"
                   />
@@ -137,7 +137,7 @@ export default async function HomePage() {
           </div>
           {/* Sidebar ad below trending stories */}
           <AdUnit
-            slot="YOUR_SIDEBAR_AD_SLOT_ID"
+            slot="1151149348"
             format="rectangle"
             className="mt-6"
             fullWidth={false}
