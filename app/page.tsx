@@ -5,7 +5,7 @@ import { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 import { getPublishedPosts, getTrendingPosts } from "@/lib/actions"
-import { formatDate, readingTime } from "@/lib/utils"
+import { formatDate } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { TrendingUp } from "lucide-react"
 import { AdUnit } from "@/components/ad-unit"
@@ -61,7 +61,7 @@ export default async function HomePage() {
                             <span>{formatDate(post.published_at)}</span>
                           )}
                           <span aria-hidden="true">·</span>
-                          <span>{readingTime(post.content_text ?? "")}</span>
+                          <span>{post.reading_time_minutes} min read</span>
                           {post.views > 0 && (
                             <>
                               <span aria-hidden="true">·</span>

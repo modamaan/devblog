@@ -15,14 +15,15 @@ export async function getPublishedPosts() {
             id: posts.id,
             slug: posts.slug,
             title: posts.title,
-            content_text: posts.content_text,
-            author_id: posts.author_id,
+            // Truncate at DB level — home page only shows a 200-char preview.
+            // Avoids shipping the full post body in the RSC payload.
+            content_text: sql<string>`LEFT(${posts.content_text}, 200)`,
+            // Calculate reading time in SQL since we don't fetch full text anymore
+            // (Spaces count + 1 = word count) / 238 WPM
+            reading_time_minutes: sql<number>`CEIL((LENGTH(${posts.content_text}) - LENGTH(REPLACE(${posts.content_text}, ' ', '')) + 1) / 238.0)::int`,
             published_at: posts.published_at,
             banner_image: posts.banner_image,
-            created_at: posts.created_at,
             views: posts.views,
-            author_name: users.name,
-            author_image: users.image,
         })
         .from(posts)
         .leftJoin(users, eq(posts.author_id, users.id))
