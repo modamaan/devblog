@@ -71,13 +71,12 @@ export default async function HomePage() {
                         </div>
                       </div>
                       {post.banner_image && (
-                        <div className="shrink-0 mt-2 sm:mt-0">
+                        <div className="relative shrink-0 mt-2 sm:mt-0 h-24 w-24 sm:h-28 sm:w-40 overflow-hidden rounded">
                           <Image
                             src={post.banner_image}
                             alt={post.title}
-                            width={160}
-                            height={112}
-                            className="h-24 w-24 sm:h-28 sm:w-40 rounded object-cover"
+                            fill
+                            className="object-cover"
                             sizes="(max-width: 640px) 96px, 160px"
                             priority={index <= 2}
                           />

@@ -101,16 +101,16 @@ export default async function PostPage({ params }: PageProps) {
                     </div>
                 </header>
 
-                {/* Banner */}
+                {/* Banner — fill inside a 16:9 container so no width/height mismatch */}
                 {post.banner_image && (
-                    <div className="mb-8">
+                    <div className="relative mb-8 w-full overflow-hidden rounded-lg" style={{ aspectRatio: "16/9" }}>
                         <Image
                             src={post.banner_image}
                             alt={post.title}
-                            width={680}
-                            height={400}
-                            className="w-full rounded-lg object-cover"
+                            fill
+                            className="object-cover"
                             priority
+                            sizes="(max-width: 768px) 100vw, 680px"
                         />
                     </div>
                 )}
