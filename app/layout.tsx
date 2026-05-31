@@ -30,11 +30,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "DevBlog — Where Ideas Come Alive",
+    default: "DevBlog — Developer Blog for Code & Technical Stories",
     template: "%s | DevBlog",
   },
   description:
-    "A modern blogging platform for developers. Read, write, and share technical stories.",
+    "DevBlog is a developer blog where you can read and share code tutorials, technical articles, and programming stories. Write, learn, and grow with the developer community.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000"),
   openGraph: {
     type: "website",
