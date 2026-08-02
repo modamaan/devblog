@@ -3,12 +3,4 @@ import kvIncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cac
 
 export default defineCloudflareConfig({
   incrementalCache: kvIncrementalCache,
-  middleware: {
-    external: true,
-    override: {
-      wrapper: "cloudflare-edge",
-      converter: "edge",
-      proxyExternalRequest: "fetch",
-    },
-  },
 })
