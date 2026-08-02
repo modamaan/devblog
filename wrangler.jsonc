@@ -2,13 +2,19 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "devblog",
   "compatibility_date": "2026-08-02",
-  "compatibility_flags": ["nodejs_compat"],
-  "main": ".worker-next/index.mjs",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "main": ".open-next/worker.js",
   "assets": {
-    "directory": ".worker-next/assets",
+    "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
   "observability": {
     "enabled": true
-  }
+  },
+  "kv_namespaces": [
+    {
+      "binding": "NEXT_INC_CACHE_KV",
+      "id": "f559505db21647fda4402e93290f0e1a"
+    }
+  ]
 }

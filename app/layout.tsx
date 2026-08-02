@@ -3,7 +3,7 @@ import { Source_Serif_4, Inter } from "next/font/google"
 import { Providers } from "@/components/providers"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { Analytics } from "@vercel/analytics/react"
+
 import Script from "next/script"
 import "./globals.css"
 
@@ -77,7 +77,6 @@ export default function RootLayout({
             <Footer />
           </div>
         </Providers>
-        <Analytics />
         {/* Google AdSense — only loads in production to avoid StrictMode errors in dev */}
         {process.env.NODE_ENV === "production" && (
           <Script
