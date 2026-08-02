@@ -10,3 +10,5 @@ export default auth
 export const config = {
   matcher: ["/me/:path*"],
 }
+
+export const runtime = "edge"
