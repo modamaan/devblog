@@ -11,4 +11,4 @@ export const config = {
   matcher: ["/me/:path*"],
 }
 
-export const runtime = "edge"
+export const runtime = "experimental-edge"
