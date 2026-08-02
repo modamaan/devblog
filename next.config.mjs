@@ -1,6 +1,5 @@
-import type { NextConfig } from "next"
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   // Image optimisation: serve AVIF first (smaller), WebP fallback
   images: {
     formats: ["image/avif", "image/webp"],
