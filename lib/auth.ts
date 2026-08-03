@@ -17,12 +17,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             clientSecret: process.env.AUTH_GOOGLE_SECRET!,
         }),
     ],
+    session: { strategy: "jwt" },
     callbacks: {
-        async session({ session, user }) {
-            // Attach user id and role to the session
-            if (session.user) {
-                session.user.id = user.id
-                session.user.role = (user as any).role ?? "user"
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user.id
+                token.role = (user as any).role ?? "user"
+            }
+            return token
+        },
+        async session({ session, token }) {
+            if (session.user && token) {
+                session.user.id = token.id as string
+                session.user.role = (token.role as string) ?? "user"
             }
             return session
         },
