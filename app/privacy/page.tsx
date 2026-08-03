@@ -34,7 +34,6 @@ export default function PrivacyPage() {
                         <li>Process and fulfil your digital product purchases and send download links.</li>
                         <li>Respond to enquiries submitted through the contact form.</li>
                         <li>Improve the website and understand how it is being used.</li>
-                        <li>Display relevant advertisements (via third-party ad partners).</li>
                     </ul>
                     <p>We do not sell or rent your personal information to third parties.</p>
                 </section>
@@ -42,8 +41,7 @@ export default function PrivacyPage() {
                 <section>
                     <h2 className="mt-8 mb-4 text-2xl font-semibold text-neutral-900">Cookies</h2>
                     <p className="mb-4">
-                        DevBlog uses cookies to improve your browsing experience and to support advertising functionality.
-                        Third-party services such as Google AdSense may place their own cookies in accordance with their privacy policies.
+                        DevBlog uses cookies to improve your browsing experience.
                         You can control cookie behaviour through your browser settings.
                     </p>
                 </section>
@@ -54,7 +52,7 @@ export default function PrivacyPage() {
                     <ul className="list-disc pl-6 mb-4 space-y-2">
                         <li><strong>Cashfree</strong> — for payment processing.</li>
                         <li><strong>Resend</strong> — for sending purchase confirmation and download emails.</li>
-                        <li><strong>Google AdSense / Analytics</strong> — for advertising and anonymous usage analytics.</li>
+                        <li><strong>Google Analytics</strong> — for anonymous usage analytics.</li>
                     </ul>
                     <p>Please review each provider&apos;s privacy policy for details on how they handle your data.</p>
                 </section>

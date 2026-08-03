@@ -8,7 +8,6 @@ import { getPublishedPosts, getTrendingPosts } from "@/lib/actions"
 import { formatDate } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { TrendingUp } from "lucide-react"
-import { AdUnit } from "@/components/ad-unit"
 
 export const metadata: Metadata = {
   alternates: {
@@ -85,14 +84,6 @@ export default async function HomePage() {
                     </div>
                   </Link>
                 </article>
-                {/* Ad after every 3rd post */}
-                {(index + 1) % 3 === 0 && (
-                  <AdUnit
-                    slot="8828504980"
-                    format="horizontal"
-                    className="my-4"
-                  />
-                )}
               </React.Fragment>
             ))}
           </div>
@@ -134,13 +125,6 @@ export default async function HomePage() {
               <p className="text-sm text-neutral-500">No trending posts yet.</p>
             )}
           </div>
-          {/* Sidebar ad below trending stories */}
-          <AdUnit
-            slot="1151149348"
-            format="rectangle"
-            className="mt-6"
-            fullWidth={false}
-          />
         </div>
       </aside>
     </div>

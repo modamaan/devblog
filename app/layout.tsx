@@ -77,15 +77,6 @@ export default function RootLayout({
             <Footer />
           </div>
         </Providers>
-        {/* Google AdSense — only loads in production to avoid StrictMode errors in dev */}
-        {process.env.NODE_ENV === "production" && (
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID}`}
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
-        )}
       </body>
     </html>
   )

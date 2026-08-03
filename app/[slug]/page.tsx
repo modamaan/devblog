@@ -11,7 +11,6 @@ import { ShareButton } from "@/components/share-button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 import { formatDate, readingTime } from "@/lib/utils"
-import { AdUnit } from "@/components/ad-unit"
 
 interface PageProps {
     params: Promise<{ slug: string }>
@@ -122,13 +121,6 @@ export default async function PostPage({ params }: PageProps) {
                 />
 
                 <Separator className="my-8" />
-
-                {/* In-article ad — shown between post body and interactions */}
-                <AdUnit
-                  slot="1794677408"
-                  format="horizontal"
-                  className="mb-8"
-                />
 
                 {/* Interactions */}
                 <div className="flex items-center gap-6">
