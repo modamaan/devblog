@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
 
         if (!cfRes.ok) {
             console.error("Cashfree create order error:", cfData)
-            return NextResponse.json({ error: "Failed to create order" }, { status: 500 })
+            return NextResponse.json({ error: "Failed to create order", details: cfData }, { status: 500 })
         }
 
         // Save pending order in DB
@@ -76,8 +76,8 @@ export async function POST(req: NextRequest) {
             paymentSessionId: cfData.payment_session_id,
             orderId,
         })
-    } catch (err) {
+    } catch (err: any) {
         console.error("create-order error:", err)
-        return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+        return NextResponse.json({ error: "Internal server error", details: err.message }, { status: 500 })
     }
 }
