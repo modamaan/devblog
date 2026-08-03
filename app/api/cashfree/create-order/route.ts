@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
                     customer_phone: phone || "9999999999",
                 },
                 order_meta: {
-                    return_url: `${req.nextUrl.origin}/store/${product.slug}?order_id={order_id}`,
+                    return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/store/${product.slug}?order_id={order_id}`,
                 },
                 order_note: product.title,
             }),
