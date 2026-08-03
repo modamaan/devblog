@@ -12,7 +12,7 @@
     "enabled": true
   },
   "vars": {
-    "AUTH_TRUST_HOST": "true",
+    "AUTH_TRUST_HOST": "true"
   },
   "kv_namespaces": [
     {
