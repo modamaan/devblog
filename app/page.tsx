@@ -40,43 +40,47 @@ export default async function HomePage() {
           <div className="flex flex-col gap-6">
             {allPosts.map((post, index) => (
               <React.Fragment key={post.id}>
-                <article className="overflow-hidden rounded-xl border border-neutral-200 bg-white transition hover:shadow-md">
-                  <Link href={`/${post.slug}`} className="group block p-5 md:p-6">
-                    <div className="flex flex-col-reverse md:flex-row gap-5 md:gap-8">
+                <article className="py-8 first:pt-0">
+                  <Link href={`/${post.slug}`} className="group block">
+                    <div className="mb-3 flex items-center gap-2">
+                      <span className="text-sm text-neutral-600">
+                        DevBlog
+                      </span>
+                      {post.published_at && (
+                        <span className="text-xs text-neutral-500">
+                          {formatDate(post.published_at)}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex flex-row gap-4 sm:gap-6 items-start">
                       <div className="flex-1 min-w-0">
-                        <div className="mb-2 flex items-center gap-2">
-                          <span className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
-                            DevBlog
-                          </span>
-                        </div>
-                        <h3 className="mb-2 font-sans text-xl font-bold leading-tight text-neutral-900 group-hover:text-blue-600">
+                        <h3 className="mb-1 font-sans text-[19px] sm:text-xl font-bold leading-tight text-neutral-900 group-hover:text-neutral-600">
                           {post.title}
                         </h3>
-                        <p className="mb-4 line-clamp-2 text-base leading-relaxed text-neutral-600">
+                        <p className="mb-3 line-clamp-2 font-serif text-[15px] sm:text-base leading-relaxed text-neutral-700">
                           {post.content_text?.slice(0, 200)}
                         </p>
-                        <div className="flex items-center gap-2 text-sm text-neutral-500">
-                          {post.published_at && (
-                            <span>{formatDate(post.published_at)}</span>
-                          )}
-                          <span aria-hidden="true">·</span>
+                        <div className="flex items-center text-sm text-neutral-500 overflow-hidden whitespace-nowrap gap-1">
                           <span>{post.reading_time_minutes} min read</span>
                           {post.views > 0 && (
                             <>
-                              <span aria-hidden="true">·</span>
+                              <span className="mx-1.5">·</span>
                               <span>{post.views} views</span>
                             </>
                           )}
                         </div>
                       </div>
                       {post.banner_image && (
-                        <div className="relative shrink-0 w-full aspect-video md:h-36 md:w-56 overflow-hidden rounded-lg">
+                        <div 
+                          className="relative shrink-0 sm:mt-0 overflow-hidden rounded bg-neutral-200"
+                          style={{ width: '112px', height: '74px', minWidth: '112px' }}
+                        >
                           <Image
                             src={post.banner_image}
                             alt={post.title}
                             fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, 224px"
+                            className="object-cover"
+                            sizes="(max-width: 640px) 112px, 160px"
                             priority={index <= 2}
                           />
                         </div>
