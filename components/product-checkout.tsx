@@ -37,12 +37,12 @@ export function ProductCheckout({ productId, productTitle, price }: ProductCheck
             const data = await res.json()
             if (!res.ok) throw new Error(data.error ?? "Failed to create order")
 
-            const { paymentSessionId, orderId } = data
+            const { paymentSessionId, orderId, mode } = data
 
             // 2. Load Cashfree JS SDK dynamically (only when needed)
             const { load } = await import("@cashfreepayments/cashfree-js")
             const cashfree = await load({
-                mode: (process.env.NEXT_PUBLIC_CASHFREE_ENV as "sandbox" | "production") ?? "sandbox",
+                mode: mode || "sandbox",
             })
 
             cashfree.checkout({

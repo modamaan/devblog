@@ -75,6 +75,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({
             paymentSessionId: cfData.payment_session_id,
             orderId,
+            mode: process.env.CASHFREE_ENV === "production" ? "production" : "sandbox",
         })
     } catch (err: any) {
         console.error("create-order error:", err)
