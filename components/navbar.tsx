@@ -18,11 +18,11 @@ export function Navbar() {
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/80 backdrop-blur-sm">
-            <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
-                <div className="flex items-center gap-6">
+            <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+                <div className="flex items-center gap-8">
                     <Link
                         href="/"
-                        className="font-sans text-xl font-bold tracking-tight text-neutral-900"
+                        className="font-sans text-2xl font-black tracking-tight text-neutral-900"
                     >
                         DevBlog
                     </Link>
@@ -78,7 +78,7 @@ export function Navbar() {
                                         variant="ghost"
                                         className="relative h-8 w-8 rounded-full"
                                     >
-                                        <Avatar className="h-8 w-8">
+                                        <Avatar className="h-9 w-9">
                                             <AvatarImage
                                                 src={session.user.image ?? ""}
                                                 alt={session.user.name ?? ""}

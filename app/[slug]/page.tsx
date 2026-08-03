@@ -82,7 +82,7 @@ export default async function PostPage({ params }: PageProps) {
             <article className="mx-auto max-w-[680px] px-4 py-10">
                 {/* Header */}
                 <header className="mb-8">
-                    <h1 className="mb-4 font-sans text-[2.5rem] font-extrabold leading-[1.15] tracking-tight text-neutral-900">
+                    <h1 className="mb-4 font-sans text-3xl sm:text-[2.5rem] font-extrabold leading-[1.15] tracking-tight text-neutral-900">
                         {post.title}
                     </h1>
 

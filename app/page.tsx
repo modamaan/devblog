@@ -22,7 +22,7 @@ export default async function HomePage() {
   ])
 
   return (
-    <div className="mx-auto flex max-w-6xl gap-12 px-4 py-10">
+    <div className="mx-auto flex flex-col lg:flex-row max-w-6xl gap-12 px-4 py-10">
       <h1 className="sr-only">DevBlog — Where Ideas Come Alive</h1>
       {/* ── Main Feed ── */}
       <section className="flex-1" aria-labelledby="latest-stories-heading">
@@ -37,22 +37,22 @@ export default async function HomePage() {
             </p>
           </div>
         ) : (
-          <div className="divide-y divide-neutral-100">
+          <div className="flex flex-col gap-6">
             {allPosts.map((post, index) => (
               <React.Fragment key={post.id}>
-                <article className="py-8 first:pt-0">
-                  <Link href={`/${post.slug}`} className="group block">
-                    <div className="flex gap-6">
-                      <div className="flex-1">
+                <article className="overflow-hidden rounded-xl border border-neutral-200 bg-white transition hover:shadow-md">
+                  <Link href={`/${post.slug}`} className="group block p-5 md:p-6">
+                    <div className="flex flex-col-reverse md:flex-row gap-5 md:gap-8">
+                      <div className="flex-1 min-w-0">
                         <div className="mb-2 flex items-center gap-2">
-                          <span className="text-sm text-neutral-600">
+                          <span className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
                             DevBlog
                           </span>
                         </div>
-                        <h3 className="mb-1 font-sans text-xl font-bold leading-tight text-neutral-900 group-hover:text-neutral-600">
+                        <h3 className="mb-2 font-sans text-xl font-bold leading-tight text-neutral-900 group-hover:text-blue-600">
                           {post.title}
                         </h3>
-                        <p className="mb-3 line-clamp-2 font-serif text-base leading-relaxed text-neutral-700">
+                        <p className="mb-4 line-clamp-2 text-base leading-relaxed text-neutral-600">
                           {post.content_text?.slice(0, 200)}
                         </p>
                         <div className="flex items-center gap-2 text-sm text-neutral-500">
@@ -70,13 +70,13 @@ export default async function HomePage() {
                         </div>
                       </div>
                       {post.banner_image && (
-                        <div className="relative shrink-0 mt-2 sm:mt-0 h-24 w-24 sm:h-28 sm:w-40 overflow-hidden rounded">
+                        <div className="relative shrink-0 w-full aspect-video md:h-36 md:w-56 overflow-hidden rounded-lg">
                           <Image
                             src={post.banner_image}
                             alt={post.title}
                             fill
-                            className="object-cover"
-                            sizes="(max-width: 640px) 96px, 160px"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, 224px"
                             priority={index <= 2}
                           />
                         </div>
