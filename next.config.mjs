@@ -34,6 +34,16 @@ const nextConfig = {
           },
         ],
       },
+      {
+        // Cache optimized images for 7 days in the browser
+        source: "/_next/image",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=604800, stale-while-revalidate=86400",
+          },
+        ],
+      },
     ]
   },
 }

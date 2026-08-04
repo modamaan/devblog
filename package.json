@@ -57,5 +57,11 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
     "wrangler": "^4.118.0"
-  }
+  },
+  "browserslist": [
+    "chrome >= 95",
+    "firefox >= 95",
+    "safari >= 15.4",
+    "edge >= 95"
+  ]
 }

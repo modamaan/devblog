@@ -110,6 +110,7 @@ export default async function PostPage({ params }: PageProps) {
                             className="object-cover"
                             priority
                             sizes="(max-width: 768px) 100vw, 680px"
+                            quality={60}
                         />
                     </div>
                 )}

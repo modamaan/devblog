@@ -6,7 +6,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { getPublishedPosts, getTrendingPosts } from "@/lib/actions"
 import { formatDate } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { TrendingUp } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -82,6 +81,7 @@ export default async function HomePage() {
                             className="object-cover"
                             sizes="(max-width: 640px) 112px, 160px"
                             priority={index <= 2}
+                            quality={60}
                           />
                         </div>
                       )}
