@@ -1,3 +1,4 @@
+```
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "devblog",
@@ -21,7 +22,8 @@
   "kv_namespaces": [
     {
       "binding": "NEXT_INC_CACHE_KV",
-      "id": "f559505db21647fda4402e93290f0e1a"
+      "id": "${KV_NAMESPACE_ID}"
     }
   ]
 }
+```
