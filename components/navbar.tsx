@@ -27,6 +27,12 @@ export function Navbar() {
                         DevBlog
                     </Link>
                     <Link
+                        href="/games"
+                        className="text-sm font-medium text-neutral-600 hover:text-neutral-900"
+                    >
+                        Games
+                    </Link>
+                    <Link
                         href="/store"
                         className="text-sm font-medium text-neutral-600 hover:text-neutral-900"
                     >

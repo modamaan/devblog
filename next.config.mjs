@@ -9,6 +9,7 @@ const nextConfig = {
         hostname: "**",
       },
     ],
+    qualities: [60, 75, 90, 100],
     // Cache optimised images for 7 days
     minimumCacheTTL: 60 * 60 * 24 * 7,
   },
